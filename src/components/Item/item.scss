@@ -1,13 +1,20 @@
-$primay: #b0f5c1;
-$secondary: #be7feb;
-
-.card {
-    background-color: $primay;
-    margin-top: 30 px;
-
-}
-
-.bin-info{
-    background-color: $secondary;
-}
-
+.goal-card {
+    margin-top: 2rem; 
+    max-width: 600px;
+    margin: 2rem auto 1rem;
+    background-color: #d4f8e8;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  
+    .card-body {
+      padding: 1.5rem;
+    }
+  
+    .btn {
+      width: 48%;
+    }
+  
+    .d-flex {
+      justify-content: space-between;
+    }
+  }

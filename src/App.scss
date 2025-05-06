@@ -36,3 +36,13 @@
     transform: rotate(360deg);
   }
 }
+
+.no-goals-message {
+  height: 100%; // Ocupa todo el espacio disponible
+  display: flex;
+  justify-content: center; // Centra horizontalmente
+  align-items: center; // Centra verticalmente
+  font-size: 1.2rem; // Tamaño de fuente más grande
+  color: #6c757d; // Color gris para el texto
+  text-align: center; // Asegura que el texto esté centrado
+}
