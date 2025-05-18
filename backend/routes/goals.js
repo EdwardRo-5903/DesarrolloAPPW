@@ -1,18 +1,19 @@
 var express = require('express');
 var router = express.Router();
-var authMiddleware = require('../middleware/auth');
+const checkApiKey = require('../middleware/checkApiKey');
 
 let goals = []; // Arreglo en memoria para almacenar las metas
 
+// Proteger todas las rutas con el middleware
+router.use(checkApiKey);
+
 // Obtener todas las metas (GET)
-router.get('/', authMiddleware, (req, res) => {
-  console.log('GET /goals llamado'); // Log para depuración
-  res.json(goals);
+router.get('/', (req, res) => {
+  res.status(200).json(goals);
 });
 
 // Agregar una nueva meta (POST)
-router.post('/', authMiddleware, (req, res) => {
-  console.log('POST /goals llamado con body:', req.body); // Log para depuración
+router.post('/', (req, res) => {
   const { title, dueDate } = req.body;
 
   // Validar que los campos requeridos estén presentes
@@ -23,12 +24,11 @@ router.post('/', authMiddleware, (req, res) => {
   // Crear una nueva meta
   const newGoal = { id: Date.now(), title, dueDate };
   goals.push(newGoal);
-  res.status(201).json(newGoal);
+  res.status(200).json(newGoal); // Status 200 para respuesta satisfactoria
 });
 
 // Eliminar una meta por ID (DELETE)
-router.delete('/:id', authMiddleware, (req, res) => {
-  console.log('DELETE /goals llamado con id:', req.params.id); // Log para depuración
+router.delete('/:id', (req, res) => {
   const { id } = req.params;
 
   // Validar que el ID sea un número válido
@@ -42,7 +42,7 @@ router.delete('/:id', authMiddleware, (req, res) => {
 
   // Verificar si se eliminó alguna meta
   if (goals.length === initialLength) {
-    return res.status(404).json({ error: 'Goal not found' });
+    return res.status(400).json({ error: 'Goal not found or invalid id' });
   }
 
   res.status(200).json({ message: 'Goal deleted' });
