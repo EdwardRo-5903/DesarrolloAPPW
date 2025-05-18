@@ -1,70 +1,107 @@
-# Getting Started with Create React App
+Proyecto To-Do List: Tareas y Metas
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este proyecto es una aplicación web para gestionar tareas y metas personales. Permite agregar, listar y eliminar tareas y metas, además de asignarles una fecha límite.
 
-## Available Scripts
+Requisitos previos
 
-In the project directory, you can run:
+Antes de ejecutar el proyecto, asegúrate de tener instalado lo siguiente:
 
-### `npm start`
+Node.js (versión LTS recomendada)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+npm (incluido con Node.js)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Git
 
-### `npm test`
+Estructura del proyecto:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+El proyecto está dividido en dos partes:
 
-### `npm run build`
+Frontend: Interfaz de usuario.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Backend: API para gestionar tareas y metas.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Cómo ejecutar el proyecto:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Clonar el repositorio Clona este repositorio en tu máquina local: git clone
 
-### `npm run eject`
+Navegar a la carpeta del proyecto cd ProyectoDWeb/proyectdw
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Ejecutar el backend Navega a la carpeta del backend: cd backend
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Instala las dependencias: npm install
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Inicia el servidor: npm start
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+El backend estará disponible en: http://localhost:3000
 
-## Learn More
+Ejecutar el frontend Navega a la carpeta del frontend: cd frontend
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Instala las dependencias: npm install
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Inicia la aplicación: npm start
 
-### Code Splitting
+El frontend estará disponible en: http://localhost:3001
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Endpoints del backend
 
-### Analyzing the Bundle Size
+Tareas (/tasks)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+GET /tasks: Obtiene todas las tareas.
 
-### Making a Progressive Web App
+POST /tasks: Agrega una nueva tarea.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+DELETE /tasks/:id: Elimina una tarea por ID.
 
-### Advanced Configuration
+Metas (/goals)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+GET /goals: Obtiene todas las metas.
 
-### Deployment
+POST /goals: Agrega una nueva meta.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+DELETE /goals/:id: Elimina una meta por ID.
 
-### `npm run build` fails to minify
+Notas importantes
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Middleware de autenticación: Todas las solicitudes al backend requieren un encabezado Authorization con una API key válida: Authorization: mi-api-key
+
+Datos en memoria: Los datos se almacenan en memoria, por lo que se perderán si el servidor se reinicia.
+
+Puertos: Backend: http://localhost:3000 Frontend: http://localhost:3001
+
+Tecnologías utilizadas:
+
+Frontend:
+
+React
+
+Sass
+
+Backend:
+
+Node.js
+
+Express
+
+Middleware personalizado
+
+Gestión de estado:
+
+Redux Toolkit
+
+Contribuciones
+
+Si deseas contribuir al proyecto, sigue estos pasos:
+
+Haz un fork del repositorio.
+
+Crea una nueva rama: git checkout -b nombre-de-tu-rama
+
+Realiza tus cambios y haz un commit: git commit -m "Descripción de los cambios"
+
+Sube tus cambios: git push origin nombre-de-tu-rama
+
+Abre un Pull Request en GitHub.
+
+Autor
+
+Proyecto desarrollado por EdwardDev.
