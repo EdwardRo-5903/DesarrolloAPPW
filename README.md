@@ -1,70 +1,123 @@
-# Getting Started with Create React App
+# Proyecto To-Do List: Tareas y Metas
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Esta aplicación web permite gestionar tareas y metas personales. Puedes agregar, listar, editar y eliminar tareas y metas, además de asignarles una fecha límite.
 
-## Available Scripts
+## Requisitos previos
 
-In the project directory, you can run:
+- Node.js (versión LTS recomendada)  
+- npm (incluido con Node.js)  
+- Git  
+- MongoDB (local o en la nube)
 
-### `npm start`
+## Estructura del proyecto
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+El proyecto está dividido en dos partes:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Frontend**: Interfaz de usuario (carpeta `frontend`)
+- **Backend**: API para gestionar tareas y metas (carpeta `backend`)
 
-### `npm test`
+## Conexión a base de datos
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+El backend está conectado a una base de datos MongoDB usando Mongoose.  
+Se implementó un CRUD completo (Crear, Leer, Actualizar y Eliminar) sobre las colecciones de tareas y metas.
 
-### `npm run build`
+## Cómo ejecutar el proyecto
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Clonar el repositorio
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+git clone <URL-del-repositorio>
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Navegar a la carpeta del proyecto
 
-### `npm run eject`
+```bash
+cd ProyectoDWeb/proyectdw
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Ejecutar el backend
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+cd backend
+npm install
+npm start
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+El backend estará disponible en: `http://localhost:3001`
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Ejecutar el frontend
 
-## Learn More
+```bash
+cd frontend
+npm install
+npm start
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+El frontend estará disponible en: `http://localhost:3000`
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Endpoints del backend
 
-### Code Splitting
+### Tareas (`/tasks`)
+- `GET /tasks`: Obtiene todas las tareas.  
+- `POST /tasks`: Agrega una nueva tarea.  
+- `DELETE /tasks/:id`: Elimina una tarea por ID.  
+- `PUT /tasks/:id`: Actualiza una tarea existente.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Metas (`/goals`)
+- `GET /goals`: Obtiene todas las metas.  
+- `POST /goals`: Agrega una nueva meta.  
+- `DELETE /goals/:id`: Elimina una meta por ID.  
+- `PUT /goals/:id`: Actualiza una meta existente.
 
-### Analyzing the Bundle Size
+## Notas importantes
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- **Middleware de autenticación**:  
+  Todas las solicitudes al backend requieren un encabezado `x-api-key` con una API key válida:
+  ```
+  x-api-key: mi-api-key
+  ```
 
-### Making a Progressive Web App
+- **Persistencia de datos**:  
+  Los datos se almacenan en MongoDB, lo que permite mantenerlos aunque el servidor se reinicie.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- **Puertos:**  
+  - Backend: `http://localhost:3001`  
+  - Frontend: `http://localhost:3000`
 
-### Advanced Configuration
+## Tecnologías utilizadas
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### Frontend:
+- React  
+- Sass  
 
-### Deployment
+### Backend:
+- Node.js  
+- Express  
+- MongoDB y Mongoose  
+- Middleware personalizado  
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### Gestión de estado:
+- Redux Toolkit  
 
-### `npm run build` fails to minify
+## Contribuciones
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Si deseas contribuir al proyecto, sigue estos pasos:
+
+1. Haz un fork del repositorio.  
+2. Crea una nueva rama:  
+   ```bash
+   git checkout -b nombre-de-tu-rama
+   ```
+3. Realiza tus cambios y haz un commit:  
+   ```bash
+   git commit -m "Descripción de los cambios"
+   ```
+4. Sube tus cambios:  
+   ```bash
+   git push origin nombre-de-tu-rama
+   ```
+5. Abre un Pull Request en GitHub.
+
+## Autor
+
+Proyecto desarrollado por **EdwardDev**.

@@ -3,10 +3,18 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Alert from 'react-bootstrap/Alert';
 import { useDispatch } from 'react-redux';
-import { addGoal } from '../../reducers/goalsSlice';
+import { addGoalAsync } from '../../reducers/goalsSlice';
+
+function isBeforeToday(dateString) {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0); // Quita la hora
+  const inputDate = new Date(dateString);
+  inputDate.setHours(0, 0, 0, 0); // Quita la hora
+  return inputDate < today;
+}
 
 function Formulario() {
-  const [name, setName] = useState('');
+  const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [dueDate, setDueDate] = useState('');
   const [error, setError] = useState('');
@@ -14,18 +22,18 @@ function Formulario() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!name.trim() || !description.trim() || !dueDate) {
+    if (!title.trim() || !description.trim() || !dueDate) {
       setError('Por favor, completa todos los campos.');
       return;
     }
 
-    if (new Date(dueDate) < new Date()) {
+    if (isBeforeToday(dueDate)) {
       setError('La fecha de vencimiento no puede ser anterior a hoy.');
       return;
     }
 
-    dispatch(addGoal({ id: Date.now(), name, description, dueDate }));
-    setName('');
+    dispatch(addGoalAsync({ title, description, dueDate }));
+    setTitle('');
     setDescription('');
     setDueDate('');
     setError('');
@@ -36,39 +44,35 @@ function Formulario() {
       {error && <Alert variant="danger">{error}</Alert>}
 
       <Form.Group className="mb-3">
-        <Form.Label>Name</Form.Label>
+        <Form.Label>Titulo</Form.Label>
         <Form.Control
           type="text"
-          placeholder="Enter name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          aria-label="Nombre de la meta"
+          placeholder="Escriba Titulo"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
         />
       </Form.Group>
 
       <Form.Group className="mb-3">
-        <Form.Label>Description</Form.Label>
+        <Form.Label>Descripción</Form.Label>
         <Form.Control
           as="textarea"
-          rows={3}
-          placeholder="Enter description"
+          placeholder="Escriba Descripción"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
-          aria-label="Descripción de la meta"
         />
       </Form.Group>
 
       <Form.Group className="mb-3">
-        <Form.Label>Due Date</Form.Label>
+        <Form.Label>Fecha</Form.Label>
         <Form.Control
           type="date"
           value={dueDate}
           onChange={(e) => setDueDate(e.target.value)}
-          aria-label="Fecha de vencimiento"
         />
       </Form.Group>
 
-      <Button variant="primary" type="submit" disabled={!name || !description || !dueDate}>
+      <Button variant="primary" type="submit" disabled={!title || !description || !dueDate}>
         Add Goal
       </Button>
     </Form>

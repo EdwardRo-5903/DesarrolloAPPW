@@ -1,17 +1,14 @@
 var express = require('express');
 var router = express.Router();
-const checkApiKey = require('../middleware/checkApiKey'); // Asegúrate de que el nombre coincida con tu archivo
-let tasks = []; // Arreglo en memoria para almacenar tareas
+const checkApiKey = require('../middleware/checkApiKey'); 
+let tasks = []; 
 
-// Proteger todas las rutas con el middleware
 router.use(checkApiKey);
 
-// Obtener todas las tareas
 router.get('/', (req, res) => {
   res.status(200).json(tasks);
 });
 
-// Agregar una nueva tarea
 router.post('/', (req, res) => {
   const { title, dueDate } = req.body;
   if (!title || !dueDate) {
@@ -19,10 +16,9 @@ router.post('/', (req, res) => {
   }
   const newTask = { id: Date.now(), title, dueDate };
   tasks.push(newTask);
-  res.status(200).json(newTask); // Status 200 para respuesta satisfactoria
+  res.status(200).json(newTask); 
 });
 
-// Eliminar una tarea
 router.delete('/:id', (req, res) => {
   const { id } = req.params;
   const initialLength = tasks.length;

@@ -3,18 +3,18 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 import { useDispatch } from 'react-redux';
-import { removeGoal, editGoal } from '../../reducers/goalsSlice';
+import { removeGoalAsync, editGoalAsync } from '../../reducers/goalsSlice';
 import './item.scss';
 
-function Item({ id, name, description, dueDate }) {
+function Item({ id, title, description, dueDate }) {
   const dispatch = useDispatch();
   const [isEditing, setIsEditing] = useState(false);
-  const [editedName, setEditedName] = useState(name);
+  const [editedTitle, setEditedTitle] = useState(title);
   const [editedDescription, setEditedDescription] = useState(description);
   const [editedDueDate, setEditedDueDate] = useState(dueDate);
 
   const handleRemove = () => {
-    dispatch(removeGoal(id));
+    dispatch(removeGoalAsync(id));
   };
 
   const handleEdit = () => {
@@ -22,12 +22,12 @@ function Item({ id, name, description, dueDate }) {
   };
 
   const handleSave = () => {
-    dispatch(editGoal({ id, name: editedName, description: editedDescription, dueDate: editedDueDate }));
+    dispatch(editGoalAsync({ _id: id, title: editedTitle, description: editedDescription, dueDate: editedDueDate }));
     setIsEditing(false);
   };
 
   const handleCancel = () => {
-    setEditedName(name);
+    setEditedTitle(title);
     setEditedDescription(description);
     setEditedDueDate(dueDate);
     setIsEditing(false);
@@ -39,11 +39,11 @@ function Item({ id, name, description, dueDate }) {
         {isEditing ? (
           <>
             <Form.Group>
-              <Form.Label>Nombre</Form.Label>
+              <Form.Label>Título</Form.Label>
               <Form.Control
                 type="text"
-                value={editedName}
-                onChange={(e) => setEditedName(e.target.value)}
+                value={editedTitle}
+                onChange={(e) => setEditedTitle(e.target.value)}
               />
             </Form.Group>
             <Form.Group>
@@ -73,7 +73,7 @@ function Item({ id, name, description, dueDate }) {
           </>
         ) : (
           <>
-            <Card.Title>{name}</Card.Title>
+            <Card.Title>{title}</Card.Title>
             <Card.Text>
               <strong>Descripción:</strong> {description}
             </Card.Text>

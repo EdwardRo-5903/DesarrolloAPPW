@@ -1,3 +1,4 @@
+import React, { useEffect } from 'react';
 import './App.scss';
 import Item from './components/Item/Item';
 import Menu from './components/Menu/Menu';
@@ -5,12 +6,16 @@ import Container from 'react-bootstrap/esm/Container';
 import Formulario from './components/Formulario/Formulario';
 import Col from 'react-bootstrap/esm/Col';
 import Row from 'react-bootstrap/esm/Row';
-import { useSelector } from 'react-redux';
-import { selectGoals } from './reducers/goalsSlice';
-import './App.scss';
+import { useSelector, useDispatch } from 'react-redux';
+import { selectGoals, fetchGoals } from './reducers/goalsSlice';
 
 function App() {
+  const dispatch = useDispatch();
   const goals = useSelector(selectGoals);
+
+  useEffect(() => {
+    dispatch(fetchGoals());
+  }, [dispatch]);
 
   return (
     <div className="App">
@@ -24,9 +29,9 @@ function App() {
             {goals.length > 0 ? (
               goals.map((goal) => (
                 <Item
-                  key={goal.id}
-                  id={goal.id}
-                  name={goal.name}
+                  key={goal._id}
+                  id={goal._id}
+                  title={goal.title}
                   description={goal.description}
                   dueDate={goal.dueDate}
                 />
